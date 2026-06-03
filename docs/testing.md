@@ -48,13 +48,36 @@ AuthenticationService.login() — Admin credential validation and role-based men
   ```
 
 **Actual Output:**
-*(To be completed after execution)*
+ 1. Login
+  2. Exit
+----------------------------------------
+Enter choice: 1
+
+----------------------------------------
+  LOGIN
+----------------------------------------
+Username: admin
+Password: admin123
+Login successful. Welcome, admin!
+
+========================================
+  ADMIN MENU  —  Logged in as: admin
+========================================
+  1. Player Management
+  2. Hero Management
+  3. Equipment Management
+  4. Team Overview
+  5. Match Records
+  6. Search
+  7. Leaderboard
+  8. Save Data
+  9. Logout
 
 **Pass/Fail:**
-*(To be completed after execution)*
+Pass
 
 **Bug Found:**
-*(None / Describe issue)*
+None
 
 ---
 
@@ -84,13 +107,26 @@ AuthenticationService.login() — Player credential validation and role-based me
   ```
 
 **Actual Output:**
-*(To be completed after execution)*
+Username: AlphaWolf
+Password: pass001
+Login successful. Welcome, AlphaWolf!
+
+========================================
+  PLAYER MENU  —  Logged in as: AlphaWolf
+========================================
+  1. View Profile
+  2. View Owned Heroes
+  3. View Match History
+  4. Search Hero
+  5. View Leaderboard
+  6. Save Data
+  7. Logout
 
 **Pass/Fail:**
-*(To be completed after execution)*
+Pass
 
 **Bug Found:**
-*(None / Describe issue)*
+None
 
 ---
 
@@ -128,13 +164,71 @@ Search by Name (step 7):
 - Same output as above (both queries resolve to P003).
 
 **Actual Output:**
-*(To be completed after execution)*
+Enter choice: 6
+
+----------------------------------------
+  SEARCH
+----------------------------------------
+  1. Search Player by ID
+  2. Search Player by Name
+  3. Search Team by ID
+  4. Search Team by Name
+  5. Search Hero by Name
+  6. Back
+----------------------------------------
+Enter choice: 1
+
+Player ID: P003
+  ID:        P003
+  Username:  AlphaDragon
+  Level:     30
+  Team:      Team Alpha
+  Matches:   200
+  Wins:      135
+  Losses:    65
+  Win Rate:  67.5%
+  Heroes:    6
+  Matches:   10 on record
+
+----------------------------------------
+  SEARCH
+----------------------------------------
+  1. Search Player by ID
+  2. Search Player by Name
+  3. Search Team by ID
+  4. Search Team by Name
+  5. Search Hero by Name
+  6. Back
+----------------------------------------
+Enter choice: 2
+
+Player name: AlphaDragon
+  ID:        P003
+  Username:  AlphaDragon
+  Level:     30
+  Team:      Team Alpha
+  Matches:   200
+  Wins:      135
+  Losses:    65
+  Win Rate:  67.5%
+  Heroes:    6
+  Matches:   10 on record
+
+----------------------------------------
+  SEARCH
+----------------------------------------
+  1. Search Player by ID
+  2. Search Player by Name
+  3. Search Team by ID
+  4. Search Team by Name
+  5. Search Hero by Name
+  6. Back
 
 **Pass/Fail:**
-*(To be completed after execution)*
+Pass
 
 **Bug Found:**
-*(None / Describe issue)*
+None
 
 ---
 
@@ -176,13 +270,44 @@ Search "zhang fei" (step 6) — case-insensitive match:
 ```
 
 **Actual Output:**
-*(To be completed after execution)*
+Enter choice: 5
+
+Hero name: Diao Chan
+  ID:        H011
+  Name:      Diao Chan
+  Type:      Mage
+  Base HP:   650
+  Base ATK:  95
+  Base DEF:  10
+  Equipment: 5 compatible
+
+----------------------------------------
+  SEARCH
+----------------------------------------
+  1. Search Player by ID
+  2. Search Player by Name
+  3. Search Team by ID
+  4. Search Team by Name
+  5. Search Hero by Name
+  6. Back
+----------------------------------------
+Enter choice: 5
+
+Hero name: zhang fei
+  ID:        H001
+  Name:      Zhang Fei
+  Type:      Tank
+  Base HP:   1500
+  Base ATK:  30
+  Base DEF:  60
+  Equipment: 6 compatible
+
 
 **Pass/Fail:**
-*(To be completed after execution)*
+Pass
 
 **Bug Found:**
-*(None / Describe issue)*
+None
 
 ---
 
@@ -219,13 +344,50 @@ Search by Name "Team Beta" (step 7):
 - Same output as above.
 
 **Actual Output:**
-*(To be completed after execution)*
+  TEAM OVERVIEW
+----------------------------------------
+  1. View All Teams
+  2. Search Team by ID
+  3. Search Team by Name
+  4. Back
+----------------------------------------
+Enter choice: 2
+
+Team ID: T002
+  ID:        T002
+  Name:      Team Beta
+  Members:   5
+  Roster:    BetaStorm, BetaShadow, BetaBlade, BetaFrost, BetaFlame
+  Matches:   38
+  Wins:      20
+  Losses:    18
+  Win Rate:  52.6%
+
+----------------------------------------
+  TEAM OVERVIEW
+----------------------------------------
+  1. View All Teams
+  2. Search Team by ID
+  3. Search Team by Name
+  4. Back
+----------------------------------------
+Enter choice: 3
+
+Team name: Team Beta
+  ID:        T002
+  Name:      Team Beta
+  Members:   5
+  Roster:    BetaStorm, BetaShadow, BetaBlade, BetaFrost, BetaFlame
+  Matches:   38
+  Wins:      20
+  Losses:    18
+  Win Rate:  52.6%
 
 **Pass/Fail:**
-*(To be completed after execution)*
+Pass
 
 **Bug Found:**
-*(None / Describe issue)*
+None
 
 ---
 
@@ -261,7 +423,81 @@ Top by Level (step 5) — P003 (level 30) at rank 1, P007 (level 28) at rank 2, 
 Top by Match Count (step 7) — P003 (200 matches) at rank 1, P007 (150 matches) at rank 2, P011 (140 matches) at rank 3.
 
 **Actual Output:**
-*(To be completed after execution)*
+  1    P003   AlphaDragon        30       200      67%      67.5%   
+  2    P010   BetaFlame          24       110      65%      65.5%   
+  3    P001   AlphaWolf          25       120      65%      65.0%   
+  4    P011   GammaRay           27       140      64%      64.3%   
+  5    P007   BetaShadow         28       150      63%      63.3%   
+  6    P014   GammaArrow         21       100      62%      62.0%   
+  7    P005   AlphaEagle         22       95       61%      61.1%   
+  8    P002   AlphaTiger         18       85       58%      58.8%   
+  9    P012   GammaKnight        19       80       56%      56.3%   
+  10   P006   BetaStorm          20       90       53%      53.3%   
+  11   P015   GammaShield        17       75       53%      53.3%   
+  12   P004   AlphaPhoenix       15       60       53%      53.3%   
+  13   P013   GammaMage          14       55       50%      50.9%   
+  14   P009   BetaFrost          16       70       50%      50.0%   
+  15   P008   BetaBlade          12       40       45%      45.0%   
+
+----------------------------------------
+  LEADERBOARD
+----------------------------------------
+  1. Top Players by Win Rate
+  2. Top Players by Level
+  3. Top Players by Match Count
+  4. Equipment Ranking
+  5. Back
+----------------------------------------
+Enter choice: 2
+
+-- Top Players by Level --
+  Rank ID     Name               Level    Matches  Level    WinRate 
+----------------------------------------
+  1    P003   AlphaDragon        30       200      30       67.5%   
+  2    P007   BetaShadow         28       150      28       63.3%   
+  3    P011   GammaRay           27       140      27       64.3%   
+  4    P001   AlphaWolf          25       120      25       65.0%   
+  5    P010   BetaFlame          24       110      24       65.5%   
+  6    P005   AlphaEagle         22       95       22       61.1%   
+  7    P014   GammaArrow         21       100      21       62.0%   
+  8    P006   BetaStorm          20       90       20       53.3%   
+  9    P012   GammaKnight        19       80       19       56.3%   
+  10   P002   AlphaTiger         18       85       18       58.8%   
+  11   P015   GammaShield        17       75       17       53.3%   
+  12   P009   BetaFrost          16       70       16       50.0%   
+  13   P004   AlphaPhoenix       15       60       15       53.3%   
+  14   P013   GammaMage          14       55       14       50.9%   
+  15   P008   BetaBlade          12       40       12       45.0%   
+
+----------------------------------------
+  LEADERBOARD
+----------------------------------------
+  1. Top Players by Win Rate
+  2. Top Players by Level
+  3. Top Players by Match Count
+  4. Equipment Ranking
+  5. Back
+----------------------------------------
+Enter choice: 3
+
+-- Top Players by Match Count --
+  Rank ID     Name               Level    Matches  Matches  WinRate 
+----------------------------------------
+  1    P003   AlphaDragon        30       200      200      67.5%   
+  2    P007   BetaShadow         28       150      150      63.3%   
+  3    P011   GammaRay           27       140      140      64.3%   
+  4    P001   AlphaWolf          25       120      120      65.0%   
+  5    P010   BetaFlame          24       110      110      65.5%   
+  6    P014   GammaArrow         21       100      100      62.0%   
+  7    P005   AlphaEagle         22       95       95       61.1%   
+  8    P006   BetaStorm          20       90       90       53.3%   
+  9    P002   AlphaTiger         18       85       85       58.8%   
+  10   P012   GammaKnight        19       80       80       56.3%   
+  11   P015   GammaShield        17       75       75       53.3%   
+  12   P009   BetaFrost          16       70       70       50.0%   
+  13   P004   AlphaPhoenix       15       60       60       53.3%   
+  14   P013   GammaMage          14       55       55       50.9%   
+  15   P008   BetaBlade          12       40       40       45.0%  
 
 **Pass/Fail:**
 *(To be completed after execution)*
@@ -295,13 +531,49 @@ Top by Match Count (step 7) — P003 (200 matches) at rank 1, P007 (150 matches)
 If no warning line `[Warning] This team composition is suboptimal: Lacks a Tank or Support role!` appears for any of the three default teams, the check is functioning correctly (default teams all have proper composition).
 
 **Actual Output:**
-*(To be completed after execution)*
+  TEAM OVERVIEW
+----------------------------------------
+  1. View All Teams
+  2. Search Team by ID
+  3. Search Team by Name
+  4. Back
+----------------------------------------
+Enter choice: 1
+
+-- All Teams (3 total) --
+----------------------------------------
+  ID:        T001
+  Name:      Team Alpha
+  Members:   5
+  Roster:    AlphaWolf, AlphaTiger, AlphaDragon, AlphaPhoenix, AlphaEagle
+  Matches:   45
+  Wins:      28
+  Losses:    17
+  Win Rate:  62.2%
+----------------------------------------
+  ID:        T002
+  Name:      Team Beta
+  Members:   5
+  Roster:    BetaStorm, BetaShadow, BetaBlade, BetaFrost, BetaFlame
+  Matches:   38
+  Wins:      20
+  Losses:    18
+  Win Rate:  52.6%
+----------------------------------------
+  ID:        T003
+  Name:      Team Gamma
+  Members:   5
+  Roster:    GammaRay, GammaKnight, GammaMage, GammaArrow, GammaShield
+  Matches:   42
+  Wins:      25
+  Losses:    17
+  Win Rate:  59.5%
 
 **Pass/Fail:**
-*(To be completed after execution)*
+Pass
 
 **Bug Found:**
-*(None / Describe issue)*
+None
 
 ---
 
@@ -339,13 +611,43 @@ In the filesystem (step 5):
 All list fields (memberIds, ownedHeroIds, etc.) use `;` (semicolon) as the intra-cell separator.
 
 **Actual Output:**
-*(To be completed after execution)*
+========================================
+  ADMIN MENU  —  Logged in as: admin
+========================================
+  1. Player Management
+  2. Hero Management
+  3. Equipment Management
+  4. Team Overview
+  5. Match Records
+  6. Search
+  7. Leaderboard
+  8. Save Data
+  9. Logout
+----------------------------------------
+Enter choice: 9
+Logged out.
 
+========================================
+  LOGIN MENU
+========================================
+  1. Login
+  2. Exit
+----------------------------------------
+Enter choice: 2
+
+----------------------------------------
+  EXIT
+----------------------------------------
+Save data before exit? (Y/N): N
+Goodbye!
+I check the 'data' and ensure it create 5 .CSV doucuments
+This is the real data:
+id,username,password,level,totalMatches,wins,losses,teamId,ownedHeroIds,matchRecordIds
 **Pass/Fail:**
-*(To be completed after execution)*
+Pass
 
 **Bug Found:**
-*(None / Describe issue)*
+None
 
 ---
 
@@ -376,13 +678,48 @@ Loaded persisted data from CSV files.
 All 3 teams, 15 players, 20 heroes, 25 equipment items, and 20 match records are restored with their original data including cross-references (team memberships, hero ownership, match history).
 
 **Actual Output:**
-*(To be completed after execution)*
+========================================
+  Honor of Kings IMS
+  Welcome to  Honor of Kings IMS!
+========================================
+Default data initialized.
+Loaded persisted data from CSV files.
+
+-- All Teams (3 total) --
+----------------------------------------
+  ID:        T001
+  Name:      Team Alpha
+  Members:   5
+  Roster:    AlphaWolf, AlphaTiger, AlphaDragon, AlphaPhoenix, AlphaEagle
+  Matches:   45
+  Wins:      28
+  Losses:    17
+  Win Rate:  62.2%
+----------------------------------------
+  ID:        T002
+  Name:      Team Beta
+  Members:   5
+  Roster:    BetaStorm, BetaShadow, BetaBlade, BetaFrost, BetaFlame
+  Matches:   38
+  Wins:      20
+  Losses:    18
+  Win Rate:  52.6%
+----------------------------------------
+  ID:        T003
+  Name:      Team Gamma
+  Members:   5
+  Roster:    GammaRay, GammaKnight, GammaMage, GammaArrow, GammaShield
+  Matches:   42
+  Wins:      25
+  Losses:    17
+  Win Rate:  59.5%
+
 
 **Pass/Fail:**
-*(To be completed after execution)*
+Pass
 
 **Bug Found:**
-*(None / Describe issue)*
+None
 
 ---
 
@@ -511,7 +848,51 @@ Part C (step 12) — P099 display:
 Part D (step 13) — P100 display shows `Team: Team Alpha`.
 
 **Actual Output:**
-*(To be completed after execution)*
+-- Add Player --
+ID: P099
+Username: TestPlayer99
+Password: test99
+Level (1-30): 15
+Team ID (or blank): T999
+  [Warning] Team ID 'T999' does not exist!
+  Player will be created as a Free Agent (No Team).
+Player added successfully.
+the correct one:
+-- Add Player --
+ID: P100
+Username: TestPlayer100
+Password: test100
+Level (1-30): 20
+Team ID (or blank): T001
+Player added successfully.
+
+check ghost Player 
+-- View Player --
+Player ID: P099
+  ID:        P099
+  Username:  TestPlayer99
+  Level:     15
+  Team:      -
+  Matches:   0
+  Wins:      0
+  Losses:    0
+  Win Rate:  0.0%
+  Heroes:    0
+  Matches:   0 on record
+
+  -- View Player --
+Player ID: P100
+  ID:        P100
+  Username:  TestPlayer100
+  Level:     20
+  Team:      Team Alpha
+  Matches:   0
+  Wins:      0
+  Losses:    0
+  Win Rate:  0.0%
+  Heroes:    0
+  Matches:   0 on record
+
 
 **Pass/Fail:**
 *(To be completed after execution)*
@@ -580,43 +961,108 @@ Goodbye!
 Application terminates (no `Data saved successfully.` message).
 
 **Actual Output:**
-*(To be completed after execution)*
+Enter choice: 9
+Logged out.
 
+========================================
+  LOGIN MENU
+========================================
+  1. Login
+  2. Exit
+----------------------------------------
+Enter choice: 2
+
+----------------------------------------
+  EXIT
+----------------------------------------
+Save data before exit? (Y/N): Y
+Data saved successfully.
+Goodbye!
+
+  LOGIN MENU
+========================================
+  1. Login
+  2. Exit
+----------------------------------------
+Enter choice: 2
+
+----------------------------------------
+  EXIT
+----------------------------------------
+Save data before exit? (Y/N): N
+Goodbye!
 **Pass/Fail:**
-*(To be completed after execution)*
+Pass
 
 **Bug Found:**
-*(None / Describe issue)*
+None
 
 ---
 
+## Test ID: T13 — Team Roster Capacity Limit Enforcement
+
+**Function Tested:**
+Main.addPlayer() and Team.addMember() — Verifying if the system enforces a maximum capacity limit (5 members) for a competitive team roster to prevent illegal team over-sizing.
+
+**Input:**
+1. Log in as Admin (`admin` / `admin123`).
+2. Navigate to Player Management -> Add Player.
+3. Attempt to add a 6th player to Team Alpha (T001), which already has 5 members.
+   - ID: `P088`
+   - Username: `Extra`
+   - Password: `Password88`
+   - Level: `15`
+   - Team ID: `T001`
+4. Navigate to Team Overview -> View All Teams to inspect Team Alpha's roster.
+
+**Expected Output:**
+The system should intercept the request, display a business logic warning (e.g., "Team is full"), and reject the assignment.
+
+**Actual Output:**
+-- Add Player --
+ID: P088
+Username: Extra
+Password: Password88
+Level (1-30): 15
+Team ID (or blank): T001
+Player added successfully.
+
+-- All Teams (3 total) --
+----------------------------------------
+  ID:        T001
+  Name:      Team Alpha
+  Members:   7
+  Roster:    AlphaWolf, AlphaTiger, AlphaDragon, AlphaPhoenix, AlphaEagle, TestPlayer100, Extra
+
+**Pass/Fail:**
+Fail
+
+**Bug Found:**
+The system currently lacks a business rule constraint to validate and limit team size. Team Alpha successfully accepts extra members beyond the standard 5-player competitive roster limit. A validation check `if (team.getMemberCount() >= 5)` needs to be implemented in the service layer.
+
 # Test Summary
 
-**Total Test Cases:** 12
+**Total Test Cases:** 13
 
 | Test ID | Description | Pass/Fail |
 |---------|-------------|-----------|
-| T01 | Admin Login | *(pending)* |
-| T02 | Player Login | *(pending)* |
-| T03 | Search Player | *(pending)* |
-| T04 | Search Hero | *(pending)* |
-| T05 | Search Team | *(pending)* |
-| T06 | Ranking System | *(pending)* |
-| T07 | Team Composition Check | *(pending)* |
-| T08 | Save Data to CSV | *(pending)* |
-| T09 | Load Data from CSV | *(pending)* |
-| T10 | Invalid Input Validation | *(pending)* |
-| T11 | Player Creation with Team Validation | *(pending)* |
-| T12 | Logout and Exit System | *(pending)* |
+| T01 | Admin Login | PASS |
+| T02 | Player Login | PASS |
+| T03 | Search Player | PASS |
+| T04 | Search Hero | PASS |
+| T05 | Search Team | PASS |
+| T06 | Ranking System | PASS |
+| T07 | Team Composition Check | PASS |
+| T08 | Save Data to CSV | PASS |
+| T09 | Load Data from CSV | PASS |
+| T10 | Invalid Input Validation | PASS |
+| T11 | Player Creation with Team Validation | PASS |
+| T12 | Logout and Exit System | PASS |
+| T13 | Team Roster Capacity Limit Enforcement | FAIL |
 
-**Passed:**
-—
-
-**Failed:**
-—
-
-**Known Issues:**
-—
+**Passed:** 12
+**Failed:** 1
+**Known Issues:** T13 - Missing team capacity restriction; existing roster overflowed due to persistence of previous test inputs.
 
 ---
 
