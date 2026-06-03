@@ -70,7 +70,7 @@ public class Main {
     }
 
     // ========================================================================
-    // Startup
+
     // ========================================================================
 
     /**
@@ -80,6 +80,7 @@ public class Main {
     public void start() {
         System.out.println(SEPARATOR);
         System.out.println("  Honor of Kings IMS");
+        System.out.println("  Welcome to  Honor of Kings IMS!");
         System.out.println(SEPARATOR);
 
         DataInitializer.initialize(dataManager);
@@ -287,6 +288,12 @@ public class Main {
             String password = InputHelper.readPassword("Password: ");
             int level = InputHelper.readInt("Level (1-30): ", 1, 30);
             String teamId = InputHelper.readString("Team ID (or blank): ");
+
+            if (!teamId.isEmpty() && !findTeamById(teamId).isPresent()) {
+                System.out.println("  [Warning] Team ID '" + teamId + "' does not exist!");
+                System.out.println("  Player will be created as a Free Agent (No Team).");
+                teamId = ""; //no exist team
+            }
 
             Player player = new Player(id, username, password, level,
                     teamId.isEmpty() ? null : teamId);
