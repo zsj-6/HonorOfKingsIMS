@@ -289,19 +289,29 @@ public class Main {
             int level = InputHelper.readInt("Level (1-30): ", 1, 30);
             String teamId = InputHelper.readString("Team ID (or blank): ");
 
-            if (!teamId.isEmpty() && !findTeamById(teamId).isPresent()) {
-                System.out.println("  [Warning] Team ID '" + teamId + "' does not exist!");
-                System.out.println("  Player will be created as a Free Agent (No Team).");
-                teamId = ""; //no exist team
+            Optional<Team> teamOpt = Optional.empty();
+            if (!teamId.isEmpty()) {
+                teamOpt = findTeamById(teamId);
+                if (!teamOpt.isPresent()) {
+                    System.out.println("  [Warning] Team ID '" + teamId + "' does not exist!");
+                    System.out.println("  Player will be created as a Free Agent (No Team).");
+                    teamId = ""; // no exist team
+                }
+            }
+
+            if (!teamId.isEmpty() && teamOpt.isPresent()) {
+                try {
+                    teamOpt.get().addMember(id);
+                } catch (IllegalStateException e) {
+                    System.out.println("[Error] " + e.getMessage());
+                    System.out.println("Operation canceled. Player registration rejected.");
+                    return;
+                }
             }
 
             Player player = new Player(id, username, password, level,
                     teamId.isEmpty() ? null : teamId);
             dataManager.addPlayer(player);
-
-            if (!teamId.isEmpty()) {
-                findTeamById(teamId).ifPresent(t -> t.addMember(id));
-            }
 
             System.out.println("Player added successfully.");
         } catch (IllegalArgumentException e) {

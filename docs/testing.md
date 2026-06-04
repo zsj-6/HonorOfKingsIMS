@@ -1019,26 +1019,14 @@ Main.addPlayer() and Team.addMember() — Verifying if the system enforces a max
 The system should intercept the request, display a business logic warning (e.g., "Team is full"), and reject the assignment.
 
 **Actual Output:**
--- Add Player --
-ID: P088
-Username: Extra
-Password: Password88
-Level (1-30): 15
-Team ID (or blank): T001
-Player added successfully.
-
--- All Teams (3 total) --
-----------------------------------------
-  ID:        T001
-  Name:      Team Alpha
-  Members:   7
-  Roster:    AlphaWolf, AlphaTiger, AlphaDragon, AlphaPhoenix, AlphaEagle, TestPlayer100, Extra
+[Error] Cannot add player: team is already full (maximum 5 members).
+Operation canceled. Player registration rejected.
 
 **Pass/Fail:**
-Fail
+Pass
 
 **Bug Found:**
-The system currently lacks a business rule constraint to validate and limit team size. Team Alpha successfully accepts extra members beyond the standard 5-player competitive roster limit. A validation check `if (team.getMemberCount() >= 5)` needs to be implemented in the service layer.
+None
 
 # Test Summary
 
@@ -1058,11 +1046,11 @@ The system currently lacks a business rule constraint to validate and limit team
 | T10 | Invalid Input Validation | PASS |
 | T11 | Player Creation with Team Validation | PASS |
 | T12 | Logout and Exit System | PASS |
-| T13 | Team Roster Capacity Limit Enforcement | FAIL |
+| T13 | Team Roster Capacity Limit Enforcement | Pass |
 
-**Passed:** 12
-**Failed:** 1
-**Known Issues:** T13 - Missing team capacity restriction; existing roster overflowed due to persistence of previous test inputs.
+**Passed:** 13
+**Failed:** 0
+**Known Issues:** T13 - Missing team capacity restriction; existing roster overflowed due to persistence of previous test inputs.(Solved)
 
 ---
 

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Team {
+    private static final int MAX_MEMBERS = 5;
     private String id;
     private String name;
     private List<String> memberIds;
@@ -65,6 +66,10 @@ public class Team {
     public void addMember(String playerId) {
         if (playerId == null || playerId.trim().isEmpty()) {
             throw new IllegalArgumentException("Player ID cannot be null or blank.");
+        }
+        if (memberIds.size() >= MAX_MEMBERS) {
+            throw new IllegalStateException(
+                    "Cannot add player: team is already full (maximum 5 members).");
         }
         if (!memberIds.contains(playerId)) {
             memberIds.add(playerId);
