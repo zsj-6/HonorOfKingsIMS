@@ -1,6 +1,8 @@
 ## 1. Project Overview
 Name: Honor of Kings Information Management System
 
+Repository: https://github.com/zsj-6/HonorOfKingsIMS
+
 This is a console-based Java application developed for the Object-Oriented Programming coursework. The Honor of Kings IMS is designed to manage core game entities, including Players, Heroes, Equipment, Teams, and Match Records.
 
 ## 2. Core Features
