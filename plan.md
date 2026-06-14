@@ -1,4 +1,4 @@
-# AI-Assisted Honor of Kings Information Management System
+﻿# AI-Assisted Honor of Kings Information Management System
 
 Author: ZhangShijie
 
@@ -716,16 +716,85 @@ Mitigation:
 
 ---
 
-# 12. Final Reflection Placeholder
+---
 
-This section will be completed after implementation.
+# 12. Final Reflection
 
-Topics:
+## 12.1 AI Tools Used
 
-- AI tools used
-- Best prompt
-- Incorrect AI suggestions
-- Debugging experience
-- Lessons learned
-- Remaining uncertainties
-- Human contribution analysis
+I used three AI tools throughout this project:
+
+- **ChatGPT (GPT-5.5)** - Architect Agent. Designed the system architecture, UML structure, and project documentation plan. Also helped draft the final reflection and submission checklist.
+- **Claude (Opus 4.7)** - Implementation Agent. Generated model classes, service layer code, CSV persistence, CLI menu system, test plans, and UML documentation.
+- **Gemini** - Reviewer Agent. Reviewed generated code, identified design issues (e.g. missing team capacity limit), and suggested improvements before I merged changes.
+
+## 12.2 Most Useful Prompt
+
+The most useful prompt was my initial architectural query to ChatGPT. By asking it to focus purely on class boundaries, layer responsibilities, and interfaces *without* generating code, I got a clean Model-Service-Presentation architecture before a single line was written. This prevented the common mistake of receiving a single-file monolithic block that would be impossible to debug. The layered architecture became the foundation for every subsequent implementation step.
+
+## 12.3 Incorrect AI Suggestions
+
+**Team capacity bug**: Claude's initial model layer implementation did not enforce a maximum team size. The Team class had no MAX_MEMBERS limit, allowing unlimited players per team. I discovered this during manual testing when I successfully added a 6th player to Team Alpha (T13 test case). I fixed this myself by adding MAX_MEMBERS = 5 to Team.java and wrapping the assignment logic in Main.addPlayer() with a try/catch to display a friendly error message instead of crashing.
+
+**ChatGPT vs Claude on Leaderboard**: When I asked both models to design a multi-sort leaderboard, ChatGPT used players.sort() for in-place sorting, which would permanently mutate the global player list. Claude used new ArrayList<>(...) for defensive copying. Claude's approach was safer and more production-appropriate, and I adopted it.
+
+## 12.4 Code Verification Process
+
+All AI-generated code went through a three-step verification pipeline:
+
+1. **Compilation**: Every generated class was compiled in IntelliJ IDEA before being accepted.
+2. **Manual testing**: I ran 13 structured test cases covering authentication, CRUD, search, ranking, CSV save/load, edge cases, and exit flows. All 13 passed.
+3. **Peer AI review**: I used Gemini to independently review generated code for design issues before merging changes. This caught the team capacity vulnerability.
+
+## 12.5 Bugs I Fixed Myself
+
+**Team capacity overflow (T13)**: The most significant bug. The system allowed unlimited players per team. I added MAX_MEMBERS = 5, threw IllegalStateException on overflow, and updated the CLI to catch and display the error gracefully.
+
+**Ghost team assignment (T11)**: Players could be assigned to nonexistent team IDs. I added validation in Main.addPlayer() using findTeamById(), displaying a warning and creating the player as a Free Agent when the team does not exist.
+
+## 12.6 Java Concepts Learned
+
+This project deepened my understanding of:
+
+- **Encapsulation**: Private fields, validated setters, unmodifiable collection views.
+- **Inheritance and Abstraction**: Person as abstract base, polymorphic menu routing via isAdmin() / isPlayer().
+- **Interfaces**: Persistable contract decoupling persistence from business logic.
+- **Collections**: ArrayList, HashMap, Collections.unmodifiableList() for defensive programming.
+- **Comparator composition**: Extracting a reusable TIEBREAKER constant for multi-dimensional ranking.
+- **Exception handling**: Custom AuthenticationException, IllegalStateException for business rule violations, try/catch in CLI for graceful error display.
+- **File I/O**: BufferedReader/BufferedWriter for CSV persistence with proper resource management.
+
+## 12.7 Remaining Uncertainties
+
+I am still unsure about designing larger-scale systems independently. Throughout this project, I relied on AI to propose the layered architecture and service responsibilities. While I understand the final structure, I want to gain more experience making architectural decisions without external scaffolding.
+
+I also recognise that Main.java grew too large (~1250 lines). In a future iteration, I would extract menu handlers into separate classes, but I lacked the time to refactor within the coursework deadline.
+
+## 12.8 Did AI Make the Project Easier or Harder?
+
+**Easier**: AI dramatically accelerated implementation. Writing 7 model classes, 5 services, 800 lines of CSV parsing, and a 1250-line CLI from scratch would have taken weeks. With Claude, I had compilable code within hours. ChatGPT's architecture plan gave me a clear roadmap from day one.
+
+**Harder**: AI-generated code is not production-ready out of the box. The team capacity bug could have gone unnoticed without manual testing. Gemini's review was helpful but not exhaustive. Every generated class required careful reading, and I spent significant time tracing cross-references across 30 source files to verify correctness.
+
+**Overall**: AI saved time on boilerplate but demanded more time on verification. The net result was positive - I could not have built this system in two weeks without AI assistance.
+
+## 12.9 Human vs AI Contribution
+
+**Primarily written by me**:
+- Project planning and task decomposition
+- Git history management (12 commits, approved tagging convention)
+- All documentation (plan.md, design.md, test-cases.md, README.md, uml-draft.md, prompts.md, agent-log.md, reflection.md)
+- Manual testing of all 13 test cases
+- Bug identification and fixes (team capacity, ghost team assignment)
+- Prompt engineering and AI coordination
+- Final code review and verification
+
+**Primarily generated by AI**:
+- Model layer boilerplate (7 classes + 4 enums)
+- Service layer implementation (5 services + 1 interface)
+- CSV persistence code (~800 lines)
+- CLI menu system (~1250 lines)
+- Test plan template (12 test cases)
+- UML diagram source (Mermaid)
+
+All AI-generated code was reviewed, tested, and modified by me before being committed to the repository. No code was accepted without verification.
